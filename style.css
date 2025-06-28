@@ -1,0 +1,265 @@
+﻿body {
+  margin: 0;
+  font-family: 'Newsreader', serif;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #000;
+  background-color: #fff;
+  font-weight:400;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Hide mobile layout by default */
+.layout-mobile {
+  display: none;
+}
+
+/* Hide desktop layout on mobile */
+.layout-desktop {
+  display: block;
+}
+
+/* ========== MOBILE STYLES ========== */
+@media (max-width: 768px) {
+  .layout-mobile {
+    display: block;
+  }
+
+  .link-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .left-links a {
+    margin-right: 0rem;
+  }
+
+  .back-to-top {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    margin-right:3rem;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity 0.4s ease-in;
+     }
+
+      .back-to-top img {
+      width: 12px;  /* adjust as needed */
+      height: auto;
+      display: inline-block;
+    }
+
+    .back-to-top.visible {
+      display: block;
+      opacity: .7;
+      pointer-events: auto;
+    }
+
+  .layout-desktop {
+    display: none;
+  }
+
+  .mobile-navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height:95px;
+    background-color: #fff;
+    padding: 22px;
+    z-index: 1000;
+    font-size:14px;
+  }
+
+  .mobile-stack {
+    padding: 6rem 1.25rem 2rem; /* top offset for fixed navbar */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-project .title-top{
+    font-size: 14px;
+    font-weight:400;
+    margin-top:80px;
+    margin-bottom:25px;
+    font-weight:500;
+  }
+
+  .mobile-project .title {
+    font-size: 14px;
+    font-weight: 400;
+    line-height:1.3;
+    margin-bottom:2px;
+    margin-top:8px;
+  }
+
+  .mobile-project .category {
+    font-size: 14px;
+    font-weight:300;
+    color: #0000000;
+    line-height:1.3;
+    margin-bottom:8px;
+  }
+
+  .mobile-project img {
+    border-radius: 10px;
+    margin-bottom:12px;
+  }
+}
+
+/* ========== DESKTOP STYLES ========== */
+.grid-container {
+  display: grid;
+  grid-template-columns: 9fr 2.5fr 2.5fr 1fr;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+p {
+  margin: 0 0 1em 0; /* removes top margin, keeps bottom spacing */
+}
+
+.intro, .featured, .projects {
+  font-size: 12px;
+}
+
+a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.featured ul li,
+.projects ul li {
+  opacity: 0.25;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.featured ul li.active,
+.projects ul li.active {
+  opacity: 1;
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  width: 960px;
+  max-width: 95vw;
+  transition: transform 1s cubic-bezier(0.25, 1, .3, 1);
+  will-change: transform;
+}
+
+.slide {
+  position: relative;
+  min-width: 100%;
+  margin: 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  transition: opacity 0.5s ease-out, transform 1s ease-out;
+  scroll-snap-align: center;
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.slide.loaded {
+  opacity: 1;
+  transform: translateY(0) scale(0.9);
+}
+
+.slide.active {
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.slide:hover .overlay {
+  opacity: 1;
+}
+
+.text div {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.text{
+  flex-grow:1;
+}
+
+.project-link {
+  display: flex;
+  align-items: flex-start;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  margin-bottom:10px;
+}
+
+.project-link .text {
+  flex-grow: 1;
+  position: relative;
+}
+
+.project-link .list-arrow {
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+  margin-left: 10px; /* Distance from the text block */
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.project-item:hover .list-arrow {
+  opacity: 1;
+}
+
+/* Optional: iPad tweak */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: 3fr 2fr 2fr;
+    padding: 1.5rem;
+  }
+
+  .carousel {
+    width: 100%;
+  }
+
+  .slide {
+    margin: 20px;
+  }
+}
