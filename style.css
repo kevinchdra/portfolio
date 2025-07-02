@@ -1,8 +1,8 @@
-﻿body {
+body {
   margin: 0;
   font-family: 'Newsreader', serif;
-  font-size: 12px;
-  line-height: 1.4;
+  font-size: 0.8rem;
+  line-height: 1.5;
   color: #000;
   background-color: #fff;
   font-weight:400;
@@ -23,6 +23,162 @@ img {
 .layout-desktop {
   display: block;
 }
+
+.intro em {
+    font-weight:300;
+}
+
+
+/* ========== DESKTOP STYLES ========== */
+.grid-container {
+  display: grid;
+  grid-template-columns: 9fr 2.5fr 2.5fr 1fr;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+p {
+  margin: 0 0 1em 0; /* removes top margin, keeps bottom spacing */
+}
+
+.intro, .featured, .projects {
+  font-size: .7rem;
+}
+
+a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.featured ul li,
+.projects ul li {
+  opacity: 0.25;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.featured ul li.active,
+.projects ul li.active {
+  opacity: 1;
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  width: 90vw;
+  max-width: 960px;
+  transition: transform 1s cubic-bezier(0.25, 1, .3, 1);
+  will-change: transform;
+}
+
+.slide {
+  position: relative;
+  min-width: 100%;
+  margin: 1.5rem;
+  border-radius: 16px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  transition: opacity 0.5s ease-out, transform 1s ease-out;
+  scroll-snap-align: center;
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.slide.loaded {
+  opacity: 1;
+  transform: translateY(0) scale(0.9);
+}
+
+.slide.active {
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.slide:hover .overlay {
+  opacity: 1;
+}
+
+.text div {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.text{
+  flex-grow:1;
+}
+
+.project-link {
+  display: flex;
+  align-items: flex-start;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  margin-bottom:0.8rem;
+}
+
+.project-link .text {
+  flex-grow: 1;
+  position: relative;
+}
+
+.project-link .list-arrow {
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+  margin-left: 0.3rem; /* Distance from the text block */
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.project-item:hover .list-arrow {
+  opacity: 1;
+}
+
+/* Optional: iPad tweak 
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: 3fr 2fr 2fr;
+    padding: 1.5rem;
+  }
+
+  .carousel {
+    width: 100%;
+  }
+
+  .slide {
+    margin: 20px;
+  }
+}*/
+
 
 /* ========== MOBILE STYLES ========== */
 @media (max-width: 768px) {
@@ -114,152 +270,37 @@ img {
   }
 }
 
-/* ========== DESKTOP STYLES ========== */
-.grid-container {
-  display: grid;
-  grid-template-columns: 9fr 2.5fr 2.5fr 1fr;
-  gap: 1rem;
-  padding: 1.5rem;
-}
 
-p {
-  margin: 0 0 1em 0; /* removes top margin, keeps bottom spacing */
-}
 
-.intro, .featured, .projects {
-  font-size: 12px;
-}
-
-a {
-  text-decoration: underline;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-.featured ul li,
-.projects ul li {
-  opacity: 0.25;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.featured ul li.active,
-.projects ul li.active {
-  opacity: 1;
-}
-
-.carousel-container {
+@media (min-width: 769px) and (max-width: 1440px) {
+  .carousel {
   display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-  overflow: hidden;
+  width: 500vw;
+  max-width: 960px;
+  transition: transform 1s cubic-bezier(0.25, 1, .3, 1);
+  will-change: transform;
+  margin-top:2rem;
 }
 
-.carousel {
+  .slide img {
+    max-height: 60vh;
+    object-fit: contain;
+  }
+}
+
+@media (min-width: 1441px) and (max-width: 1600px) {
+  .carousel {
   display: flex;
-  width: 960px;
-  max-width: 95vw;
+  width: 40vw;
+  max-width: 960px;
   transition: transform 1s cubic-bezier(0.25, 1, .3, 1);
   will-change: transform;
 }
 
-.slide {
-  position: relative;
-  min-width: 100%;
-  margin: 20px;
-  border-radius: 16px;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(20px) scale(0.9);
-  transition: opacity 0.5s ease-out, transform 1s ease-out;
-  scroll-snap-align: center;
-}
-
-.slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.slide.loaded {
-  opacity: 1;
-  transform: translateY(0) scale(0.9);
-}
-
-.slide.active {
-  transform: scale(1.05);
-  z-index: 1;
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.slide:hover .overlay {
-  opacity: 1;
-}
-
-.text div {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  line-height: 1.3;
-}
-
-.text{
-  flex-grow:1;
-}
-
-.project-link {
-  display: flex;
-  align-items: flex-start;
-  text-decoration: none;
-  color: inherit;
-  position: relative;
-  margin-bottom:10px;
-}
-
-.project-link .text {
-  flex-grow: 1;
-  position: relative;
-}
-
-.project-link .list-arrow {
-  font-size: 1rem;
-  opacity: 0;
-  transition: opacity 0.2s ease-in;
-  margin-left: 10px; /* Distance from the text block */
-  flex-shrink: 0;
-  align-self: flex-start;
-}
-
-.project-item:hover .list-arrow {
-  opacity: 1;
-}
-
-/* Optional: iPad tweak */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .grid-container {
-    grid-template-columns: 3fr 2fr 2fr;
-    padding: 1.5rem;
-  }
-
-  .carousel {
-    width: 100%;
-  }
-
-  .slide {
-    margin: 20px;
+  .slide img {
+    max-height: 60vh;
+    object-fit: contain;
   }
 }
+
+
