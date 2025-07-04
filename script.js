@@ -1,4 +1,3 @@
-
 const carousel = document.getElementById('carousel');
 const slides = document.querySelectorAll('.slide');
 const featuredItems = document.querySelectorAll('.featured ul li');
